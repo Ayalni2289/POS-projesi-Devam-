@@ -10,7 +10,7 @@ const Header = () => {
                 <div className="logo"></div>
                     <a href="/">
                         <h2 className="text-2xl font-bold 
-                        md:text-4xl ">LOGO</h2>
+                        md:text-4xl">LOGO</h2>
                     </a>
     {/*Logo END*/}
     {/*Search*/}
@@ -60,7 +60,7 @@ const Header = () => {
                         </a>
     {/*Menu END*/}
                 </div>
-                <Badge count={5} offset={[0,6]} className="md:flex hidden">
+                <Badge count={5} offset={[0,6]} className="md:hidden flex ">
                         <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all
                                                 ">
                             <ShoppingCartOutlined   className="py-1 md:text-2xl text-xl"/>
