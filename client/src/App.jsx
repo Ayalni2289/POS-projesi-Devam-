@@ -8,7 +8,7 @@ function App() {
       <Header />
       <div className="home flex justify-between px-6 gap-10">
         <div className="categories flex-1
-                        overflow-auto max-h-[calc(100vh-111px)]">
+                        overflow-auto max-h-[calc(100vh-111px)] pb-6">
           <Categories />
         </div>
         <div className="products flex-[8]">
