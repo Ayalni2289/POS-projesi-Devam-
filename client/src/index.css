@@ -12,3 +12,6 @@ body {
 .categories::-webkit-scrollbar{
   display: none;
 }
+.ant-btn-primary {
+  background-color: #1677ff;
+}
