@@ -23,7 +23,7 @@ const Header = () => {
                 </div>
     {/*Search END*/}
     {/*Menu*/}
-                <div className="menu-links flex justify-between items-center gap-7 md:static fixed bottom-0
+                <div className="menu-links flex justify-between items-center gap-7 md:static fixed z-50 bottom-0
                                 md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t
                                 md:px-0 px-4 py-1">
     {/*Ana Sayfa*/}

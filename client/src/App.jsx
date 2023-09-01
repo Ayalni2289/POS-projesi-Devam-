@@ -9,14 +9,14 @@ function App() {
     <>
   {/*Header*/}
       <Header />
-      <div className="home flex justify-between px-6 gap-10">
+      <div className="home flex justify-between flex-col md:flex-row px-6 gap-10 md:pb-0 pb-16">
   {/*Categories*/}      
         <div className="categories
                         overflow-auto max-h-[calc(100vh-111px)] pb-6">
           <Categories />
         </div>
   {/*Products*/}
-        <div className="products flex-[8]">
+        <div className="products flex-[8] max-h-[calc(100vh-111px)] overflow-auto pb-6">
           <Products />
         </div>
   {/*Cart*/}
