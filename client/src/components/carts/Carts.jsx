@@ -11,21 +11,22 @@ const Carts = () => {
             </div>
             <div className="cart-totals mt-auto"></div>
             <div className="border-t border-b mt-4">
-
+{/*Ara Toplam */}
                 <div className="flex justify-between p-2">
                     <b>Ara Toplam</b>
                     <span>100₺</span>
                 </div>
-
+{/*KDV */}
                 <div className="flex justify-between p-2">
                     <b>KDV %8</b>
                     <span className="text-red-700">+8₺</span>
                 </div>
-
+{/*Genel Toplam*/}
                 <div className="flex justify-between p-2 border-b">
                     <b className="text-xl text-green-500">Genel Toplam</b>
                     <span className="text-xl leading-none">108₺</span>
                 </div>
+{/*Sipariş Oluştur ve Temizle Butonları*/}
                 <div className="py-4 px-2">
                     <Button type="primary" size="large" className="w-full">
                     Sipariş Oluştur
