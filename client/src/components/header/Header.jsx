@@ -109,4 +109,4 @@ const HeLinkder = () => {
   );
 };
 
-export defLinkult HeLinkder;
+export default HeLinkder;
