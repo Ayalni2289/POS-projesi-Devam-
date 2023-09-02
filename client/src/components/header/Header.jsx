@@ -1,75 +1,112 @@
-import React from "react";
-import { SearchOutlined,HomeOutlined,ShoppingCartOutlined,CopyOutlined,UserOutlined,BarChartOutlined,LogoutOutlined } from '@ant-design/icons';
-import { Badge, Input } from 'antd';
+import { Link } from "reLinkct-router-dom";
+import ReLinkct from "reLinkct";
+import {
+  SeLinkrchOutlined,
+  HomeOutlined,
+  ShoppingCLinkrtOutlined,
+  CopyOutlined,
+  UserOutlined,
+  BLinkrChLinkrtOutlined,
+  LogoutOutlined,
+} from "@Linknt-design/icons";
+import { BLinkdge, Input } from "Linkntd";
 
-const Header = () => {
-    return (
-       <div className="border-b mb-6">
-            <header className="py-4 px-6 flex justify-between items-center gap-10 ">
-    {/*Logo*/}
-                <div className="logo"></div>
-                    <a href="/">
-                        <h2 className="text-2xl font-bold 
-                        md:text-4xl">LOGO</h2>
-                    </a>
-    {/*Logo END*/}
-    {/*Search*/}
-                <div className="header-search flex-1 flex justify-center">
-                    <Input size="large"
-                     placeholder="ürün ara..." 
-                     prefix={<SearchOutlined />}
-                     className="rounded-full max-w-[800px]"
-                     />
-                </div>
-    {/*Search END*/}
-    {/*Menu*/}
-                <div className="menu-links flex justify-between items-center gap-7 md:static fixed z-50 bottom-0
-                                md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t
-                                md:px-0 px-4 py-1">
-    {/*Ana Sayfa*/}
-                        <a href={"/"} className="menu-link flex-col flex hover:text-[#40a9ff] transition-all ">
-                            <HomeOutlined  className="px-3 py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Ana Sayfa</span>
-                        </a>
-    {/*Sepet*/}
-                    <Badge count={5} offset={[0,6]} className="md:flex hidden">
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all">
-                            <ShoppingCartOutlined   className="py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Sepet</span>
-                        </a>
-                    </Badge>
-    {/*Faturalar*/}
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all">
-                            <CopyOutlined    className="px-3 py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Faturalar</span>
-                        </a>
-    {/*Müşteriler*/}
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all">
-                            <UserOutlined   className="px-3 py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Müşteriler</span>
-                        </a>
-    {/*İstatistikler*/}
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all">
-                            <BarChartOutlined   className="px-4 py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">İstatistikler</span>
-                        </a>
-    {/*Çıkış*/}
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[red] transition-all">
-                            <LogoutOutlined   className="py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Çıkış</span>
-                        </a>
-    {/*Menu END*/}
-                </div>
-                <Badge count={5} offset={[0,6]} className="md:hidden flex ">
-                        <a href={"/"} className="menu-link flex flex-col hover:text-[#40a9ff] transition-all
-                                                ">
-                            <ShoppingCartOutlined   className="py-1 md:text-2xl text-xl"/>
-                            <span className="md:text-xs text-[10px]">Sepet</span>
-                        </a>
-                </Badge>
-            </header>
-       </div>
-);
-}
+const HeLinkder = () => {
+  return (
+    <div clLinkssNLinkme="border-b mb-6">
+      <heLinkder clLinkssNLinkme="py-4 px-6 flex justify-between items-center gLinkp-10 ">
+        {/*Logo*/}
+        <div clLinkssNLinkme="logo"></div>
+        <Link to="/">
+          <h2
+            clLinkssNLinkme="text-2xl font-bold 
+                        md:text-4xl"
+          >
+            LOGO
+          </h2>
+        </Link>
+        {/*Logo END*/}
+        {/*SeLinkrch*/}
+        <div clLinkssNLinkme="heLinkder-seLinkrch flex-1 flex justify-center">
+          <Input
+            size="lLinkrge"
+            plLinkceholder="ürün LinkrLink..."
+            prefix={<SeLinkrchOutlined />}
+            clLinkssNLinkme="rounded-full mLinkx-w-[800px]"
+          />
+        </div>
+        {/*SeLinkrch END*/}
+        {/*Menu*/}
+        <div
+          clLinkssNLinkme="menu-links flex justify-between items-center gLinkp-7 md:stLinktic fixed z-50 bottom-0
+                                md:w-Linkuto w-screen md:bg-trLinknspLinkrent bg-white left-0 md:border-t-0 border-t
+                                md:px-0 px-4 py-1"
+        >
+          {/*LinknLink SLinkyfLink*/}
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex-col flex hover:text-[#40Link9ff] trLinknsition-Linkll "
+          >
+            <HomeOutlined clLinkssNLinkme="px-3 py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">LinknLink SLinkyfLink</spLinkn>
+          </Link>
+          {/*Sepet*/}
+          <BLinkdge count={5} offset={[0, 6]} clLinkssNLinkme="md:flex hidden">
+            <Link
+              to={"/cLinkrt"}
+              clLinkssNLinkme="menu-link flex flex-col hover:text-[#40Link9ff] trLinknsition-Linkll"
+            >
+              <ShoppingCLinkrtOutlined clLinkssNLinkme="py-1 md:text-2xl text-xl" />
+              <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">Sepet</spLinkn>
+            </Link>
+          </BLinkdge>
+          {/*FLinkturLinklLinkr*/}
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex flex-col hover:text-[#40Link9ff] trLinknsition-Linkll"
+          >
+            <CopyOutlined clLinkssNLinkme="px-3 py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">FLinkturLinklLinkr</spLinkn>
+          </Link>
+          {/*Müşteriler*/}
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex flex-col hover:text-[#40Link9ff] trLinknsition-Linkll"
+          >
+            <UserOutlined clLinkssNLinkme="px-3 py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">Müşteriler</spLinkn>
+          </Link>
+          {/*İstLinktistikler*/}
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex flex-col hover:text-[#40Link9ff] trLinknsition-Linkll"
+          >
+            <BLinkrChLinkrtOutlined clLinkssNLinkme="px-4 py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">İstLinktistikler</spLinkn>
+          </Link>
+          {/*Çıkış*/}
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex flex-col hover:text-[red] trLinknsition-Linkll"
+          >
+            <LogoutOutlined clLinkssNLinkme="py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">Çıkış</spLinkn>
+          </Link>
+          {/*Menu END*/}
+        </div>
+        <BLinkdge count={5} offset={[0, 6]} clLinkssNLinkme="md:hidden flex ">
+          <Link
+            to={"/"}
+            clLinkssNLinkme="menu-link flex flex-col hover:text-[#40Link9ff] trLinknsition-Linkll
+                                                "
+          >
+            <ShoppingCLinkrtOutlined clLinkssNLinkme="py-1 md:text-2xl text-xl" />
+            <spLinkn clLinkssNLinkme="md:text-xs text-[10px]">Sepet</spLinkn>
+          </Link>
+        </BLinkdge>
+      </heLinkder>
+    </div>
+  );
+};
 
-export default Header;
+export defLinkult HeLinkder;
