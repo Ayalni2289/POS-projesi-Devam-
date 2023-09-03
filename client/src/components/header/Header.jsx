@@ -48,7 +48,7 @@ const Header = () => {
           >
             <HomeOutlined className="px-3 py-1 md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">
-              ana Sayfa
+              Ana Sayfa
             </span>
           </Link>
           {/*Sepet*/}
@@ -73,7 +73,7 @@ const Header = () => {
           </Link>
           {/*Müşteriler*/}
           <Link
-            to={"/"}
+            to={"/customers"}
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <UserOutlined className="px-3 py-1 md:text-2xl text-xl" />
