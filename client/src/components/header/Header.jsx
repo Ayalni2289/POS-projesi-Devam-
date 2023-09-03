@@ -83,7 +83,7 @@ const Header = () => {
           </Link>
           {/*İstatistikler*/}
           <Link
-            to={"/"}
+            to={"/statistics"}
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <BarChartOutlined className="px-4 py-1 md:text-2xl text-xl" />
