@@ -1,4 +1,6 @@
 import Header from "../components/header/Header";
+import StatisticCard from "../components/statistics/StatisticCard";
+
 
 const StatisticsPage = () => {
   return (
@@ -11,19 +13,28 @@ const StatisticsPage = () => {
             Hoşgeldiniz{" "}
             <span className="text-green-700 font-bold text-xl">admin</span>
           </h2>
-          <div className="statistic-cards grid grid-cols-4 my-10">
-            <div className="card-item bg-gray-800 p-8 rounded-lg">
-              <div className="flex gap-x-4">
-                <div className="rounded-full bg-white w-16 h-16 p-3">
-                    <img src="images/user.png" alt="user.png" />
-                </div>
-                <div className="text-white">
-                    <p className="mb-2 text-lg font-medium text-gray-400">Toplam Müşteri</p>
-                    <p className="text-xl font-semibold text-gray-200">6</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div className="statistic-cards grid xl:grid-cols-4 md:grid-cols-2 my-10 md:gap-10 gap-4">
+            <StatisticCard
+              title={"Toplam Müşteri"}
+              amount={"10"}
+              img={"images/user.png"}
+            />
+            <StatisticCard
+              title={"Toplam Kazanç"}
+              amount={"200.00 ₺"}
+              img={"images/money.png"}
+            />
+            <StatisticCard
+              title={"Toplam Satış"}
+              amount={"10"}
+              img={"images/sale.png"}
+            />
+            <StatisticCard
+              title={"Toplam Ürün"}
+              amount={"30"}
+              img={"images/product.png"}
+            />
+        </div>            
         </div>
       </div>
     </>
