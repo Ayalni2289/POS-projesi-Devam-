@@ -2,7 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 const app = express();
+const cors = require("cors");
 const port = 5000;
+
+//router
+
+const categoryRoute = require("./routes/categories.js");
 
 dotenv.config();
 
@@ -14,10 +19,14 @@ const connect=async()=>{
         throw error;
     }
 }
+//milddleware
+app.use(express.json());
+app.use(cors());
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use("/api/categories", categoryRoute);
 
 app.listen(port, () => {
     connect();
     console.log(`Server started on port ${port}`);
 });
+
