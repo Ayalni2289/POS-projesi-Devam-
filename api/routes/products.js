@@ -1,21 +1,21 @@
-const Category = require("../models/Category.js");
+const Product = require("../models/Product.js");
 const express = require("express");
 const router = express.Router();
 
-//! Get all categories
-router.get("/get-category", async (req, res) => {
+//! Get all product
+router.get("/get-product", async (req, res) => {
   try {
-    const categories = await Category.find();
-    res.status(200).json(categories);
+    const product = await Product.find();
+    res.status(200).json(product);
   } catch (error) {
     console.log(error);
   }
 });
 //! Add a new category
-router.post("/add-category", async (req, res) => {
+router.post("/add-product", async (req, res) => {
     try {
-      const newCategory = new Category(req.body);
-      await newCategory.save();
+      const newPorduct = new Product(req.body);
+      await newPorduct.save();
       res.status(200).json("Item added successfully.");
     } catch (error) {
       res.status(400).json(error);
@@ -23,9 +23,9 @@ router.post("/add-category", async (req, res) => {
   });
 
 //! Update a category
-router.put("/update-category", async (req, res) => {
+router.put("/update-product", async (req, res) => {
     try {
-        await Category.findOneAndUpdate({_id:req.body.categoryId},req.body);
+        await Product.findOneAndUpdate({_id:req.body.categoryId},req.body);
         res.status(200).json("Item updated successfully.");
     } catch (error) {
         res.status(400).json(error);
@@ -33,9 +33,9 @@ router.put("/update-category", async (req, res) => {
     });
 
 //! Delete a category
-router.delete("/delete-category", async (req, res) => {
+router.delete("/delete-product", async (req, res) => {
     try {
-        await Category.findOneAndDelete({_id:req.body.categoryId});
+        await Product.findOneAndDelete({_id:req.body.categoryId});
         res.status(200).json("Item deleted successfully.");
     } catch (error) {
         res.status(400).json(error);
