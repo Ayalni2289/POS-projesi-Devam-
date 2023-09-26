@@ -11,6 +11,7 @@ const categoryRoute = require("./routes/categories.js");
 const productRoute = require("./routes/products.js");
 const billRoute = require("./routes/bills.js");
 const registerRoute = require("./routes/auth.js");
+const usersRoute = require("./routes/users.js");
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/bills", billRoute);
 app.use("/api/auth",registerRoute);
+app.use("/api/users",usersRoute);
 
 app.listen(port, () => {
     connect();

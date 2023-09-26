@@ -8,7 +8,7 @@ router.get("/get-product", async (req, res) => {
     const product = await Product.find();
     res.status(200).json(product);
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error);
   }
 });
 //! Add a new category

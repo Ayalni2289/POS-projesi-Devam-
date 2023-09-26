@@ -8,7 +8,7 @@ router.get("/get-category", async (req, res) => {
     const categories = await Category.find();
     res.status(200).json(categories);
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error);
   }
 });
 //! Add a new category
