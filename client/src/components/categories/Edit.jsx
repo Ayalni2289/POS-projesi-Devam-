@@ -8,7 +8,7 @@ const Edit = ({
   setCategories,
 }) => {
   const [editingRow, seteditingRow] = useState({});
-
+  //ONFINISH
   const onFinish = (values) => {
     try {
       fetch("http://localhost:5000/api/categories/update-category", {
@@ -26,8 +26,26 @@ const Edit = ({
         })
       );
     } catch (error) {
-      message.success("Bir şeyler ters gitti");
+      message.error("Bir şeyler ters gitti");
       console.log(error);
+    }
+  };
+
+  //DELETE
+  const deleteCategories = (id) => {
+    if(window.confirm("Emin Misiniz ?")){
+        try {
+            fetch("http://localhost:5000/api/categories/delete-category", {
+              method: "DELETE",
+              body: JSON.stringify({ categoryId: id }),
+              headers: { "Content-type": "application/json; charset=UTF-8" },
+            });
+            message.success("Kategori Başarıyla Silindi");
+            setCategories(categories.filter((item) => item._id !== id));
+          } catch (error) {
+            message.error("Bir şeyler ters gitti");
+            console.log(error);
+          }
     }
   };
   const columns = [
@@ -49,7 +67,7 @@ const Edit = ({
     {
       title: "Action",
       dataIndex: "action",
-      render: (text, record) => {
+      render: (_, record) => {
         return (
           <div className="">
             <Button
@@ -62,7 +80,11 @@ const Edit = ({
             <Button type="text" htmlType="submit" className="text-gray-500">
               Kaydet
             </Button>
-            <Button type="text" danger>
+            <Button
+              type="text"
+              danger
+              onClick={() => deleteCategories(record._id)}
+            >
               Sil
             </Button>
           </div>
