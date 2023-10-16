@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import Categories from "../components/categories/categories";
 import Header from "../components/header/Header";
 import Products from "../components/products/Products";
 import Carts from "../components/carts/Carts";
 
 const HomePage = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/categories/get-category"
+        );
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategories();
+  }, []);
   return (
     <>
       {/*Header*/}
@@ -14,7 +30,7 @@ const HomePage = () => {
           className="categories
                       overflow-auto max-h-[calc(100vh-111px)] pb-6"
         >
-          <Categories />
+          <Categories categories={categories} setCategories={setCategories} />
         </div>
         {/*Products*/}
         <div className="products flex-[8] max-h-[calc(100vh-111px)] overflow-auto pb-6">
