@@ -120,7 +120,7 @@ const Edit = ({
   return (
       <Form onFinish={onFinish}>
         <Table
-          bordered
+          bordered={true}
           dataSource={products}
           columns={columns}
           rowKey={"_id"}
