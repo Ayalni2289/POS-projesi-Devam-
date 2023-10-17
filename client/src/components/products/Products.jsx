@@ -30,7 +30,7 @@ const Products = ({categories}) => {
       <div
         className="product-item border hover:shadow-lg
        cursor-pointer transition-all select-none
-       bg-fuchsia-700 flex justify-center items-center hover:opacity-80"
+       bg-fuchsia-700 flex justify-center items-center hover:opacity-80 min-h-[180px]"
        onClick={() => setIsAddModalOpen(true)}
       >
         <PlusOutlined className="text-white md:text-4xl" />
@@ -38,7 +38,7 @@ const Products = ({categories}) => {
       <div
         className="product-item border hover:shadow-lg
        cursor-pointer transition-all select-none
-       bg-orange-700 flex justify-center items-center hover:opacity-80"
+       bg-orange-700 flex justify-center items-center hover:opacity-80 min-h-[180px]"
       >
         <EditOutlined className="text-white md:text-4xl" />
       </div>
