@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import Add from "./Add";
+import { useNavigate } from "react-router-dom";
 
 const Products = ({categories}) => {
   const [products, setProducts] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -39,6 +41,7 @@ const Products = ({categories}) => {
         className="product-item border hover:shadow-lg
        cursor-pointer transition-all select-none
        bg-orange-700 flex justify-center items-center hover:opacity-80 min-h-[180px]"
+       onClick={() => navigate("/products")}
       >
         <EditOutlined className="text-white md:text-4xl" />
       </div>
