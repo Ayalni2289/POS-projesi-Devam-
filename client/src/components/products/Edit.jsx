@@ -73,13 +73,13 @@ const Edit = () => {
   const deleteCategories = (id) => {
     if(window.confirm("Emin Misiniz ?")){
         try {
-            fetch("http://localhost:5000/api/categories/delete-category", {
+            fetch("http://localhost:5000/api/products/delete-product", {
               method: "DELETE",
-              body: JSON.stringify({ categoryId: id }),
+              body: JSON.stringify({ productId: id }),
               headers: { "Content-type": "application/json; charset=UTF-8" },
             });
-            message.success("Kategori Başarıyla Silindi");
-            setCategories(categories.filter((item) => item._id !== id));
+            message.success("Ürün Başarıyla Silindi");
+            setProducts(products.filter((item) => item._id !== id));
           } catch (error) {
             message.error("Bir şeyler ters gitti");
             console.log(error);
