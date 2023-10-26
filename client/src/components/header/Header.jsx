@@ -57,7 +57,7 @@ const Header = () => {
             </span>
           </Link>
           {/*Sepet*/}
-          <Badge count={cart.cartItems.length} offset={[0, 6]} className="md:flex hidden">
+          <Badge count={cart.cartItems.length} offset={[0, 0]} className="md:flex hidden">
             <Link
               to={"/cart"}
               className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
@@ -106,7 +106,7 @@ const Header = () => {
           </Link>
           {/*Menu END*/}
         </div>
-        <Badge count={5} offset={[0, 6]} className="md:hidden flex ">
+        <Badge count={5} offset={[0, 0]} className="md:hidden flex ">
           <Link
             to={"/"}
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all
