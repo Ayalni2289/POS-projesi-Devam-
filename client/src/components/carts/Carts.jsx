@@ -1,12 +1,16 @@
 import { Button } from "antd";
-import { ClearOutlined, PlusCircleOutlined,MinusCircleOutlined } from "@ant-design/icons";
+import {
+  ClearOutlined,
+  PlusCircleOutlined,
+  MinusCircleOutlined,
+} from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCart } from "../../redux/cartSlice";
 
 const Carts = () => {
-  const { cartItems } = useSelector((state) => state.cart);
-  const dispatch= useDispatch()
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <div className="cart h-full max-h-[calc(100vh_-_90px)] flex flex-col">
@@ -21,14 +25,20 @@ const Carts = () => {
         className="cart-items px-2 flex flex-col gap-y-3 pt-2
                            overflow-y-auto "
       >
-        {cartItems.map((item) => (
+        {cart.cartItems.map((item) => (
           <li className="cart-item flex justify-between" key={item._id}>
             <div className="flex items-center">
-              <img src={item.img} alt="" className="w-16 h-16 object-cover cursor-pointer"
-                onClick={()=> dispatch(deleteCart(item))} />
+              <img
+                src={item.img}
+                alt=""
+                className="w-16 h-16 object-cover cursor-pointer"
+                onClick={() => dispatch(deleteCart(item))}
+              />
               <div className="flex flex-col ml-2">
                 <b>{item.title}</b>
-                <span>{item.price}₺ x {item.quantity}</span>
+                <span>
+                  {item.price}₺ x {item.quantity}
+                </span>
               </div>
             </div>
             <div className="flex items-center gap-x-1">
@@ -54,17 +64,26 @@ const Carts = () => {
         {/*Ara Toplam */}
         <div className="flex justify-between p-2">
           <b>Ara Toplam</b>
-          <span>100₺</span>
+          <span>{cart.total > 0 ? cart.total.toFixed(2) : 0}₺</span>
         </div>
         {/*KDV */}
         <div className="flex justify-between p-2">
-          <b>KDV %8</b>
-          <span className="text-red-700">+8₺</span>
+          <b>KDV %{cart.tax}</b>
+          <span className="text-red-700">
+            {(cart.total * cart.tax) / 100 > 0
+              ? `+${((cart.total * cart.tax) / 100).toFixed(2)}`
+              : 0}
+            ₺
+          </span>
         </div>
         {/*Genel Toplam*/}
         <div className="flex justify-between p-2 border-b">
           <b className="text-xl text-green-500">Genel Toplam</b>
-          <span className="text-xl leading-none">108₺</span>
+          <span className="text-xl leading-none">
+            {cart.total + (cart.total * cart.tax) / 100 > 0
+              ? (cart.total + (cart.total * cart.tax) / 100).toFixed(2)
+              : 0}₺
+          </span>
         </div>
         {/*Sipariş Oluştur ve Temizle Butonları*/}
         <div className="py-4 px-2">
