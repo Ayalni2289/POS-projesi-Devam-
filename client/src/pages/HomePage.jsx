@@ -29,7 +29,7 @@ const HomePage = () => {
     <>
       {/*Header*/}
       <Header />
-      <div className="home flex justify-between flex-col md:flex-row px-6 gap-10 md:pb-0 pb-16">
+      <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24 h-screen">
         {/*Categories*/}
         <div
           className="categories
