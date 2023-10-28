@@ -46,12 +46,12 @@ const Header = () => {
                                 md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t
                                 md:px-0 px-4 py-1"
         >
-          {/*ana Sayfa*/}
+          {/*Ana Sayfa*/}
           <Link
             to={"/"}
-            className="menu-a flex-col flex hover:text-[#40a9ff] transition-all "
+            className="menu-a flex-col flex hover:text-[#40a9ff] transition-all gap-y-1"
           >
-            <HomeOutlined className="px-3 py-1 md:text-2xl text-xl" />
+            <HomeOutlined className="px-3 py-1 md:text-2xl text-xla" />
             <span className="md:text-xs text-[10px]">
               Ana Sayfa
             </span>
@@ -106,7 +106,7 @@ const Header = () => {
           </Link>
           {/*Menu END*/}
         </div>
-        <Badge count={5} offset={[0, 0]} className="md:hidden flex ">
+        <Badge count={cart.cartItems.length} offset={[0, 0]} className="md:hidden flex ">
           <Link
             to={"/"}
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all
