@@ -6,6 +6,7 @@ import PrintBill from "../components/bills/PrintBill";
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [billItems, setBillItems] = useState([]);
+  const [customer, setCustomer] = useState();
 
   useEffect(() => {
     const getBills = async () => {
@@ -35,9 +36,9 @@ const BillPage = () => {
       title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text)=>{
-        return <span>{text.substring(0, 10)}</span>
-      }
+      render: (text) => {
+        return <span>{text.substring(0, 10)}</span>;
+      },
     },
     {
       title: "Ödeme Yöntemi",
@@ -48,17 +49,28 @@ const BillPage = () => {
       title: "Toplam Tutar",
       dataIndex: "totalAmount",
       key: "totalAmount",
-      render: (text)=>{
-        return <span>{text}₺</span>
-      }
+      render: (text) => {
+        return <span>{text}₺</span>;
+      },
     },
     {
       title: "Açıklama",
       dataIndex: "action",
       key: "action",
-      render: (text)=>{
-        return <Button type="link" className="pl-0"onClick={() => setIsModalOpen(true)}>Yazdır</Button>
-      }
+      render: (_,record) => {
+        return (
+          <Button
+            type="link"
+            className="pl-0"
+            onClick={() => {
+              setIsModalOpen(true);
+              setCustomer(record);
+            }}
+          >
+            Yazdır
+          </Button>
+        );
+      },
     },
   ];
   return (
@@ -71,9 +83,10 @@ const BillPage = () => {
           columns={columns}
           bordered
           pagination={false}
+          scroll={{ x: 1200, y: 450 }}
         />
       </div>
-      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
     </>
   );
 };
