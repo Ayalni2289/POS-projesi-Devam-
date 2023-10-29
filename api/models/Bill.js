@@ -10,9 +10,9 @@ const BillSchema = mongoose.Schema(
         tax:          {type:Number,required:true},
         totalAmount:  {type:Number,required:true},
     },
-    {timestapms:true} 
     );
 
+BillSchema.set("timestamps",true);
 
 const Bill = mongoose.model("bills",BillSchema);
 module.exports = Bill;
