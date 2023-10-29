@@ -1,9 +1,38 @@
-import { Modal, Button, Form, Input, Select, Card } from "antd";
+import { Modal, Button, Form, Input, Select, Card, message } from "antd";
+import { useSelector,useDispatch } from "react-redux";
+import { reset } from "../../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onFinish = async(values) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/bills/add-bill", {
+        method: "POST",
+        body: JSON.stringify({
+          ...values,
+          subTotal: cart.total,
+          totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(2),
+          tax: ((cart.total * cart.tax) / 100).toFixed(2),
+          cartItems: cart.cartItems,
+        }),
+        headers: {"Content-type": "application/json; charset=UTF-8"},
+      });
+      if(res.status === 200){
+        message.success("Fatura Oluşturuldu.");
+        dispatch(reset());
+        navigate("/bill");
+      }
+    } catch (error) {
+      message.error("Fatura Oluşturulamadı.");
+      console.log(error);
+    }
+
   };
+  
   return (
     <Modal
       title="Fatura Oluştur"
@@ -11,7 +40,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
       footer={false}
       onCancel={() => setIsModalOpen(false)}
     >
-      <Form layout="vertical" onFinish={onFinish}>
+      <Form layout={"vertical"} onFinish={onFinish}>
         {/*Müşteri Adı */}
         <Form.Item
           label="Müşteri Adı"
@@ -24,7 +53,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         {/*Telefon Numarası */}
         <Form.Item
           label="Telefon Numarası"
-          name={"phoneNumber"}
+          name={"customerPhone"}
           rules={[{ required: true, message: "Telefon Numarası Zorunludur !" }]}
           tooltip="Bu alan zorunludur."
         >
@@ -46,20 +75,22 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           />
         </Form.Item>
         <Card>
-          <div className="flex justify-between p-2">
-            <p>Ara Toplam</p>
-            <span>200₺</span>
-          </div>
-          {/*KDV */}
-          <div className="flex justify-between p-2">
-            <p>KDV %8</p>
-            <span className="text-red-700">+16₺</span>
-          </div>
-          {/*Genel Toplam*/}
-          <div className="flex justify-between p-2">
-            <b className="text-lg">Genel Toplam</b>
-            <b className="text-lg leading-none">216₺</b>
-          </div>
+        <div className="flex justify-between">
+              <span>Ara Toplam</span>
+              <span>{cart.total > 0 ? cart.total.toFixed(2) : 0}₺</span>
+            </div>
+            <div className="flex justify-between my-2">
+              <span>KDV %8</span>
+              <span className="text-red-600">{(cart.total * cart.tax) / 100 > 0
+              ? `+${((cart.total * cart.tax) / 100).toFixed(2)}`
+              : 0}₺</span>
+            </div>
+            <div className="flex justify-between font-bold">
+              <span>Toplam</span>
+              <span> {cart.total + (cart.total * cart.tax) / 100 > 0
+              ? (cart.total + (cart.total * cart.tax) / 100).toFixed(2)
+              : 0}₺</span>
+            </div>
           <div className="flex justify-end">
             <Button
             type="primary"

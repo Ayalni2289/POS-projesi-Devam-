@@ -7,10 +7,12 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCart, increase, decrease, reset } from "../../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Carts = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="cart h-full max-h-[calc(100vh_-_90px)] flex flex-col">
@@ -116,6 +118,7 @@ const Carts = () => {
             type="primary"
             size="large"
             className="w-full"
+            onClick={() => navigate("/cart")}
           >
             Sipariş Oluştur
           </Button>

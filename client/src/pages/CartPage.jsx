@@ -123,26 +123,32 @@ const CartPage = () => {
           columns={columns}
           bordered
           pagination={false}
+          scroll={{ x: 1200, y: 300 }}
         />
         <div className="cart-total flex justify-end mt-4">
           <Card className="w-72">
             <div className="flex justify-between">
               <span>Ara Toplam</span>
-              <span>200.00₺</span>
+              <span>{cart.total > 0 ? cart.total.toFixed(2) : 0}₺</span>
             </div>
             <div className="flex justify-between my-2">
-              <span>KDV Toplam %8</span>
-              <span className="text-red-600">16.00₺</span>
+              <span>KDV %8</span>
+              <span className="text-red-600">{(cart.total * cart.tax) / 100 > 0
+              ? `+${((cart.total * cart.tax) / 100).toFixed(2)}`
+              : 0}₺</span>
             </div>
             <div className="flex justify-between font-bold">
               <span>Toplam</span>
-              <span>216.00₺</span>
+              <span> {cart.total + (cart.total * cart.tax) / 100 > 0
+              ? (cart.total + (cart.total * cart.tax) / 100).toFixed(2)
+              : 0}₺</span>
             </div>
             <Button
               className="w-full mt-3"
               size="large"
               type="primary"
               onClick={() => setIsModalOpen(true)}
+              disabled={cart.cartItems.length === 0}
             >
               Sipariş Oluştur
             </Button>
