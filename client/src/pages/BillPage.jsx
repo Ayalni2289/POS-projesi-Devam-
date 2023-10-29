@@ -1,4 +1,4 @@
-import { Table, Card, Button } from "antd";
+import { Table, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import Header from "../components/header/Header";
 import PrintBill from "../components/bills/PrintBill";
