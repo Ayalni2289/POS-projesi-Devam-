@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -8,13 +8,20 @@ import {
   BarChartOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Input, Badge } from "antd";
+import { Input, Badge, message } from "antd";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const cart = useSelector((state) => state.cart);
 
-  console.log(cart.cartItems);
+  const navigate = useNavigate();
+  const logOut = () => {
+    if (window.confirm("Çıkış Yapmak istediğinize emin misiniz ?")) {
+      localStorage.removeItem("posUser");
+      navigate("/login");
+      message.success("Çıkış Yapıldı");
+    }
+  };
 
   return (
     <div className="border-b mb-6">
@@ -52,12 +59,14 @@ const Header = () => {
             className="menu-a flex-col flex hover:text-[#40a9ff] transition-all gap-y-1"
           >
             <HomeOutlined className="px-3 py-1 md:text-2xl text-xla" />
-            <span className="md:text-xs text-[10px]">
-              Ana Sayfa
-            </span>
+            <span className="md:text-xs text-[10px]">Ana Sayfa</span>
           </Link>
           {/*Sepet*/}
-          <Badge count={cart.cartItems.length} offset={[0, 0]} className="md:flex hidden">
+          <Badge
+            count={cart.cartItems.length}
+            offset={[0, 0]}
+            className="md:flex hidden"
+          >
             <Link
               to={"/cart"}
               className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
@@ -72,9 +81,7 @@ const Header = () => {
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <CopyOutlined className="px-3 py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">
-              Faturalar
-            </span>
+            <span className="md:text-xs text-[10px]">Faturalar</span>
           </Link>
           {/*Müşteriler*/}
           <Link
@@ -82,9 +89,7 @@ const Header = () => {
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <UserOutlined className="px-3 py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">
-              Müşteriler
-            </span>
+            <span className="md:text-xs text-[10px]">Müşteriler</span>
           </Link>
           {/*İstatistikler*/}
           <Link
@@ -92,21 +97,22 @@ const Header = () => {
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <BarChartOutlined className="px-4 py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">
-              İstatistikler
-            </span>
+            <span className="md:text-xs text-[10px]">İstatistikler</span>
           </Link>
           {/*Çıkış*/}
-          <Link
-            to={"/"}
-            className="menu-a flex flex-col hover:text-[red] transition-all"
-          >
-            <LogoutOutlined className="py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Çıkış</span>
-          </Link>
+          <div onClick={logOut}>
+            <Link className="menu-a flex flex-col hover:text-[red] transition-all">
+              <LogoutOutlined className="py-1 md:text-2xl text-xl" />
+              <span className="md:text-xs text-[10px]">Çıkış</span>
+            </Link>
+          </div>
           {/*Menu END*/}
         </div>
-        <Badge count={cart.cartItems.length} offset={[0, 0]} className="md:hidden flex ">
+        <Badge
+          count={cart.cartItems.length}
+          offset={[0, 0]}
+          className="md:hidden flex "
+        >
           <Link
             to={"/"}
             className="menu-a flex flex-col hover:text-[#40a9ff] transition-all

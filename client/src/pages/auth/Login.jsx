@@ -25,7 +25,7 @@ const Login = () => {
 
       if(res.status===200){
         //Kullanıcı Bilgileri LocalStorage'a Kaydedildi
-        localStorage.setItem("user", JSON.stringify({
+        localStorage.setItem("posUser", JSON.stringify({
           username: user.username,
           email: user.email,
         }));

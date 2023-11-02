@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import BillPage from "./pages/BillPage";
@@ -13,12 +13,54 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/bill" element={<BillPage />} />
-          <Route path="/customers" element={<CustomerPage />} />
-          <Route path="/statistics" element={<StatisticsPage />} />
-          <Route path="/products" element={<ProductPage />} />
+        <Route
+          path="/"
+          element={
+            <RouteControl>
+              <HomePage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RouteControl>
+              <CartPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/bill"
+          element={
+            <RouteControl>
+              <BillPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/customers"
+          element={
+            <RouteControl>
+              <CustomerPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/statistics"
+          element={
+            <RouteControl>
+              <StatisticsPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <RouteControl>
+              <ProductPage />
+            </RouteControl>
+          }
+        />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
@@ -28,3 +70,11 @@ function App() {
 }
 
 export default App;
+
+export const RouteControl = ({ children }) => {
+  if (localStorage.getItem("posUser")) {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};
