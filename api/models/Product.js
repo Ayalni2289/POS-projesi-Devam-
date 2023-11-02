@@ -7,8 +7,9 @@ const ProductSchema = mongoose.Schema(
     price: { type: Number, required: true },
     category: { type: String, required: true },
   },
-  { timestapms: true }
 );
+
+ProductSchema.set("timestamps", true);
 
 const Product = mongoose.model("products", ProductSchema);
 module.exports = Product;

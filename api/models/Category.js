@@ -4,8 +4,9 @@ const categorySchema = mongoose.Schema(
     {
         title:{type:String,required:true},
     },
-    {timestapms:true} 
     );
+
+categorySchema.set("timestamps",true);
 
 
 const Category = mongoose.model("categories",categorySchema);
