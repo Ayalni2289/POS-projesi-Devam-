@@ -1,15 +1,62 @@
-import { Button, Carousel, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 import FormItem from "antd/es/form/FormItem";
+import { useState } from "react";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+
+  const onFinish= async (values) => {
+    console.log(values);
+    setLoading(true);
+    try {
+      //Giriş İşlemi
+      const res = await fetch("http://localhost:5000/api/auth/login",{
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {"Content-type": "application/json; charset=UTF-8"},
+      });
+
+      const user = await res.json();
+
+      if(res.status===200){
+        //Kullanıcı Bilgileri LocalStorage'a Kaydedildi
+        localStorage.setItem("user", JSON.stringify({
+          username: user.username,
+          email: user.email,
+        }));
+        //Giriş Tamamlandı
+        message.success("Giriş Başarılı");
+        navigate("/");
+      }
+      else if(res.status===404)
+      {
+        message.error("Kullanıcı Bulunamadı");
+      }
+      else if(res.status===403)
+      {
+        message.error("Şifre Hatalı !");
+      }
+      setLoading(false);
+    } catch (error) {
+      //Giriş Başarısız
+      message.error("Giriş Başarısız");
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">
         <div className="xl:px-20 px-10 w-full flex flex-col h-full justify-center relative">
           <h1 className="text-center text-5xl font-bold mb-2">LOGO</h1>
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish} initialValues={{
+            remember: true,
+          }}>
             <Form.Item
               label="E-mail"
               name={"email"}
@@ -46,6 +93,7 @@ const Login = () => {
                 htmlType="submit"
                 className="w-full"
                 size="large"
+                loading={loading}
               >
                 Giriş Yap
               </Button>

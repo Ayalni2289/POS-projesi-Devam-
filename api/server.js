@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 const app = express();
 const cors = require("cors");
+const logger = require("morgan");
 const port = 5000;
 
 //router
@@ -26,6 +27,7 @@ const connect=async()=>{
 //milddleware
 app.use(express.json());
 app.use(cors());
+app.use(logger("dev"));
 
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
