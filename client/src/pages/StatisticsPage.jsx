@@ -5,14 +5,29 @@ import { Area, Pie } from "@ant-design/plots";
 
 const StatisticPage = () => {
   const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     asyncFetch();
   }, []);
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/products/get-product"
+        );
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, []);
   const asyncFetch = () => {
     fetch(
-      "https://gw.alipayobjects.com/os/bmw-prod/360c3eae-0c73-46f0-a982-4746a6095010.json"
+      "http://localhost:5000/api/bills/get-all"
     )
       .then((response) => response.json())
       .then((json) => setData(json))
@@ -21,37 +36,11 @@ const StatisticPage = () => {
       });
   };
 
-  const data2 = [
-    {
-      type: '分类一',
-      value: 27,
-    },
-    {
-      type: '分类二',
-      value: 25,
-    },
-    {
-      type: '分类三',
-      value: 18,
-    },
-    {
-      type: '分类四',
-      value: 15,
-    },
-    {
-      type: '分类五',
-      value: 10,
-    },
-    {
-      type: '其他',
-      value: 5,
-    },
-  ];
 
   const config = {
     data,
-    xField: "timePeriod",
-    yField: "value",
+    xField: "customerName",
+    yField: "subTotal",
     xAxis: {
       range: [0, 1],
     },
@@ -59,9 +48,9 @@ const StatisticPage = () => {
 
   const config2 = {
     appendPadding: 10,
-    data: data2,
-    angleField: "value",
-    colorField: "type",
+    data,
+    angleField: "subTotal",
+    colorField: "customerName",
     radius: 1,
     innerRadius: 0.6,
     label: {
@@ -89,10 +78,15 @@ const StatisticPage = () => {
           overflow: "hidden",
           textOverflow: "ellipsis",
         },
-        content: "AntV\nG2Plot",
+        content: "Toplam\nDeğer",
       },
     },
   };
+
+  const totalAmount = ()=>{
+    const amount = data.reduce((total,item) => item.totalAmount + total,0);
+    return `${amount.toFixed(2)}₺`;
+  }
 
   return (
     <>
@@ -107,22 +101,22 @@ const StatisticPage = () => {
           <div className="statistic-cards grid xl:grid-cols-4 md:grid-cols-2 my-10 md:gap-10 gap-4">
             <StatisticCard
               title={"Toplam Müşteri"}
-              amount={"10"}
+              amount={data?.length}
               img={"images/user.png"}
             />
             <StatisticCard
               title={"Toplam Kazanç"}
-              amount={"660.96 ₺"}
+              amount={totalAmount()}
               img={"images/money.png"}
             />
             <StatisticCard
               title={"Toplam Satış"}
-              amount={"6"}
+              amount={data?.length}
               img={"images/sale.png"}
             />
             <StatisticCard
               title={"Toplam Ürün"}
-              amount={"28"}
+              amount={products?.length}
               img={"images/product.png"}
             />
           </div>
