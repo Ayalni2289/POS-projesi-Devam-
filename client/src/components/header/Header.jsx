@@ -11,7 +11,7 @@ import {
 import { Input, Badge, message } from "antd";
 import { useSelector } from "react-redux";
 
-const Header = () => {
+const Header = ({setSearch}) => {
   const cart = useSelector((state) => state.cart);
 
   const navigate = useNavigate();
@@ -40,8 +40,9 @@ const Header = () => {
         {/*Search*/}
         <div className="header-search flex-1 flex justify-center">
           <Input
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
             size="large"
-            placeholder="ürün ara..."
+            placeholder="Ürün ara..."
             prefix={<SearchOutlined />}
             className="rounded-full max-w-[800px]"
           />

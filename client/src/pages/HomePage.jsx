@@ -8,6 +8,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const getCategories = async () => {
@@ -44,10 +45,11 @@ const HomePage = () => {
     getProducts();
   }, []);
 
+
   return (
     <>
       {/*Header*/}
-      <Header />
+      <Header setSearch={setSearch} />
       <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24 h-screen">
         {/*Categories*/}
         <div
@@ -68,6 +70,7 @@ const HomePage = () => {
             categories={categories}
             filtered={filtered}
             products={products}
+            search={search}
           />
         </div>
         {/*Cart*/}

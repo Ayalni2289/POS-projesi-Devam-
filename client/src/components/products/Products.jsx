@@ -4,14 +4,14 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import Add from "./Add";
 import { useNavigate } from "react-router-dom";
 
-const Products = ({categories, filtered, products, setProducts}) => {
+const Products = ({categories, filtered, products, setProducts,search}) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
 
 
   return (
     <div className="products-wrapper grid gap-4 grid-cols-card">
-      {filtered.map((item) => (
+      {filtered.filter((product) => product.title.toLowerCase().includes(search)).map((item) => (
         <ProductItem key={item._id} item={item} />
       ))}
       <div
