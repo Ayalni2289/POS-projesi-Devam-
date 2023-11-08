@@ -1,4 +1,4 @@
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Spin, Table } from "antd";
 import Header from "../components/header/Header.jsx";
 import { useEffect, useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
@@ -6,7 +6,7 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const CustomerPage = () => {
 
-  const [billItems, setBillItems] = useState([]);
+  const [billItems, setBillItems] = useState();
   const [/*searchText*/, setSearchText] = useState('');
   const [/*searchedColumn*/, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -150,8 +150,8 @@ const CustomerPage = () => {
   return (
     <>
       <Header />
-      <div className="px-6">
-        <h1 className="text-4xl font-bold text-center mb-4">Müşterilerim</h1>
+      <h1 className="text-4xl font-bold text-center mb-4">Müşterilerim</h1>
+     {billItems ? ( <div className="px-6">        
         <Table
           dataSource={billItems}
           columns={columns}
@@ -160,7 +160,7 @@ const CustomerPage = () => {
           scroll={{ x: 1000, y: 300 }}
           rowKey={(record) => record._id}
         />
-      </div>
+      </div>):<Spin size="large" className="absolute w-screen justify-center h-screen flex top-1/2" /> }
     </>
   );
 };

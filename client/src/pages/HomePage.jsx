@@ -3,10 +3,11 @@ import Categories from "../components/categories/categories";
 import Header from "../components/header/Header";
 import Products from "../components/products/Products";
 import Carts from "../components/carts/Carts";
+import { Spin } from "antd";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState();
+  const [categories, setCategories] = useState();
   const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -50,7 +51,8 @@ const HomePage = () => {
     <>
       {/*Header*/}
       <Header setSearch={setSearch} />
-      <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24 h-screen">
+      {products && categories ? (
+        <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24 h-screen">
         {/*Categories*/}
         <div
           className="categories
@@ -78,6 +80,7 @@ const HomePage = () => {
           <Carts />
         </div>
       </div>
+      ): <Spin size="large" className="absolute top-1/2 w-screen justify-center h-screen flex " />}
     </>
   );
 };

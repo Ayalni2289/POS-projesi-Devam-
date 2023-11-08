@@ -1,4 +1,4 @@
-import { Table, Button } from "antd";
+import { Table, Button, Spin } from "antd";
 import React, { useEffect, useState,useRef } from "react";
 import Header from "../components/header/Header";
 import PrintBill from "../components/bills/PrintBill";
@@ -7,7 +7,7 @@ import { Input, Space } from "antd";
 
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [billItems, setBillItems] = useState([]);
+  const [billItems, setBillItems] = useState();
   const [customer, setCustomer] = useState();
   const [/*searchText*/, setSearchText] = useState('');
   const [/*searchedColumn*/, setSearchedColumn] = useState('');
@@ -186,8 +186,9 @@ const BillPage = () => {
   return (
     <>
       <Header />
-      <div>
-        <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      {billItems ? (
+        <div>    
         <Table
           dataSource={billItems}
           columns={columns}
@@ -197,6 +198,7 @@ const BillPage = () => {
           rowKey={(record) => record._id}
         />
       </div>
+      ): <Spin size="large" className="absolute w-screen justify-center h-screen flex top-1/2" />}
       <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
     </>
   );
