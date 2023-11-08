@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -13,8 +13,9 @@ import { useSelector } from "react-redux";
 
 const Header = ({setSearch}) => {
   const cart = useSelector((state) => state.cart);
-
+  const { pathname } = useLocation();
   const navigate = useNavigate();
+
   const logOut = () => {
     if (window.confirm("Çıkış Yapmak istediğinize emin misiniz ?")) {
       localStorage.removeItem("posUser");
@@ -38,7 +39,9 @@ const Header = ({setSearch}) => {
         </Link>
         {/*Logo END*/}
         {/*Search*/}
-        <div className="header-search flex-1 flex justify-center">
+        <div className="header-search flex-1 flex justify-center" onClick={() => {
+              pathname !== "/" && navigate("/");
+            }}>
           <Input
             onChange={(e) => setSearch(e.target.value.toLowerCase())}
             size="large"

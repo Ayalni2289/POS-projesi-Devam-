@@ -194,6 +194,7 @@ const BillPage = () => {
           bordered
           pagination={false}
           scroll={{ x: 1200, y: 450 }}
+          rowKey={(record) => record._id}
         />
       </div>
       <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
