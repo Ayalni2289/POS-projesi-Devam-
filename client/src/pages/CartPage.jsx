@@ -9,8 +9,8 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const CartPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+  const [/*searchText*/, setSearchText] = useState('');
+  const [/*searchedColumn*/, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();

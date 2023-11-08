@@ -15,7 +15,7 @@ const HomePage = () => {
     const getCategories = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/categories/get-category"
+          process.env.REACT_APP_SERVER_URL + "/api/categories/get-category"
         );
         const data = await res.json();
         data &&
@@ -35,7 +35,7 @@ const HomePage = () => {
     const getProducts = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/products/get-product"
+          process.env.REACT_APP_SERVER_URL + "/api/products/get-product"
         );
         const data = await res.json();
         setProducts(data);
