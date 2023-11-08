@@ -3,6 +3,15 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
+.menu-link{
+  @apply flex flex-col hover:text-[#40a9ff] transition-all gap-y-[2px];
+}
+
+.menu-link.active{
+  @apply !text-[#40a9ff];
+
+}
+
 body {
   margin: 0;
   font-family: 'Electrolize', sans-serif;

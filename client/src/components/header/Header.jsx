@@ -11,7 +11,7 @@ import {
 import { Input, Badge, message } from "antd";
 import { useSelector } from "react-redux";
 
-const Header = ({setSearch}) => {
+const Header = ({ setSearch }) => {
   const cart = useSelector((state) => state.cart);
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -39,9 +39,12 @@ const Header = ({setSearch}) => {
         </Link>
         {/*Logo END*/}
         {/*Search*/}
-        <div className="header-search flex-1 flex justify-center" onClick={() => {
-              pathname !== "/" && navigate("/");
-            }}>
+        <div
+          className="header-search flex-1 flex justify-center"
+          onClick={() => {
+            pathname !== "/" && navigate("/");
+          }}
+        >
           <Input
             onChange={(e) => setSearch(e.target.value.toLowerCase())}
             size="large"
@@ -60,7 +63,7 @@ const Header = ({setSearch}) => {
           {/*Ana Sayfa*/}
           <Link
             to={"/"}
-            className="menu-a flex-col flex hover:text-[#40a9ff] transition-all gap-y-1"
+            className={`menu-link ${pathname === "/" && "active"}`}
           >
             <HomeOutlined className="px-3 py-1 md:text-2xl text-xla" />
             <span className="md:text-xs text-[10px]">Ana Sayfa</span>
@@ -73,7 +76,7 @@ const Header = ({setSearch}) => {
           >
             <Link
               to={"/cart"}
-              className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
+              className={`menu-link ${pathname === "/cart" && "active"}`}
             >
               <ShoppingCartOutlined className="py-1 md:text-2xl text-xl" />
               <span className="md:text-xs text-[10px]">Sepet</span>
@@ -82,7 +85,7 @@ const Header = ({setSearch}) => {
           {/*Faturalar*/}
           <Link
             to={"/bill"}
-            className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
+            className={`menu-link ${pathname === "/bill" && "active"}`}
           >
             <CopyOutlined className="px-3 py-1 md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Faturalar</span>
@@ -90,7 +93,7 @@ const Header = ({setSearch}) => {
           {/*Müşteriler*/}
           <Link
             to={"/customers"}
-            className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
+            className={`menu-link ${pathname === "/customers" && "active"}`}
           >
             <UserOutlined className="px-3 py-1 md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Müşteriler</span>
@@ -98,7 +101,7 @@ const Header = ({setSearch}) => {
           {/*İstatistikler*/}
           <Link
             to={"/statistics"}
-            className="menu-a flex flex-col hover:text-[#40a9ff] transition-all"
+            className={`menu-link ${pathname === "/statistics" && "active"}`}
           >
             <BarChartOutlined className="px-4 py-1 md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">İstatistikler</span>
@@ -119,8 +122,7 @@ const Header = ({setSearch}) => {
         >
           <Link
             to={"/"}
-            className="menu-a flex flex-col hover:text-[#40a9ff] transition-all
-                                                "
+            className={`menu-link ${pathname === "/" && "active"}`}
           >
             <ShoppingCartOutlined className="py-1 md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Sepet</span>
