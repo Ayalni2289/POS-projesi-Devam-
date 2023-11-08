@@ -9,8 +9,8 @@ const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [billItems, setBillItems] = useState([]);
   const [customer, setCustomer] = useState();
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+  const [/*searchText*/, setSearchText] = useState('');
+  const [/*searchedColumn*/, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
