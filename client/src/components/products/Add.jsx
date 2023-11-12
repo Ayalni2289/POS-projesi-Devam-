@@ -63,7 +63,7 @@ const Add = ({
         { required: true, message: "Ürün Fiyatı Alanı Boş Bırakılamaz !" },
       ]}
         >
-          <Input placeholder="Ürün fiyatı giriniz."/>
+          <Input placeholder="Ürün fiyatı giriniz." type="number" min={1}/>
         </Form.Item>
       <Form.Item name="category"
       label="Kategori Seç"
