@@ -55,7 +55,7 @@ const Add = ({
           { required: true, message: "Ürün Resmi Alanı Boş Bırakılamaz !" },
         ]}
           >
-            <Input placeholder="Ürün fiyatı giriniz."/>
+            <Input placeholder="Ürün resmi URL giriniz."/>
           </Form.Item>
       <Form.Item name="price"
       label="Ürün Fiyatı"
