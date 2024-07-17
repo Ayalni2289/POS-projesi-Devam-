@@ -7,7 +7,6 @@ const logger = require("morgan");
 const port = process.env.PORT || 5000;
 
 //router
-
 const categoryRoute = require("./routes/categories.js");
 const productRoute = require("./routes/products.js");
 const billRoute = require("./routes/bills.js");
