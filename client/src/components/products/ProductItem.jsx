@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 
 const ProductItem = ({ item }) => {
   
+
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(addProduct({...item, quantity: 1}));
-    message.success("Hasta Eklendi.",[0.7]);
+    message.success("Ürün Sepete Eklendi.",[0.7]);
   };
 
   return (
@@ -22,6 +23,10 @@ const ProductItem = ({ item }) => {
           alt=""
           className="h-28 object-cover w-full border-b"
         />
+      </div>
+      <div className="product-info flex flex-col p-3">
+        <span className="font-bold">{item.title}</span>
+        <span>{item.price}₺</span>
       </div>
     </div>
   );

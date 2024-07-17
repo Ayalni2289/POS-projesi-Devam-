@@ -5,13 +5,12 @@ const bcrypt = require("bcryptjs");
 //! Register
 router.post("/register", async (req, res) => {
     try {
-      const {tcNo,name,surname,password}=req.body;
+      const {username,email,password}=req.body;
       const salt = await bcrypt.genSalt(10);
       const hashedPassword=await bcrypt.hash(password,salt);
       const newUser = new User({
-        tcNo,
-        name,
-        surname,
+        username,
+        email,
         password:hashedPassword,
       });
       await newUser.save();
@@ -28,6 +27,8 @@ router.post("/register", async (req, res) => {
       if(!user){
         return res.status(404).send({error:"User Not Found !"});
       }
+      
+
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password

@@ -1,12 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+  SearchOutlined,
   HomeOutlined,
   ShoppingCartOutlined,
+  CopyOutlined,
   UserOutlined,
-  ProfileOutlined,
+  BarChartOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Badge, message } from "antd";
+import { Input, Badge, message } from "antd";
 import { useSelector } from "react-redux";
 
 const Header = ({ setSearch }) => {
@@ -25,23 +27,33 @@ const Header = ({ setSearch }) => {
   return (
     <div className="border-b mb-6">
       <header className="py-4 px-6 flex justify-between items-center gap-10 ">
-        {/*Search*/}
-        <div className="">
-          Diş fotoğrafı
-          </div>
-        {/*logo*/}
-        <div
-          className="logo flex-1 flex justify-center">
-            <Link to="/">
+        {/*Logo*/}
+        <div className="logo"></div>
+        <Link to="/">
           <h2
             className="text-2xl font-bold 
                         md:text-4xl"
           >
-            Dental Caries
+            LOGO
           </h2>
         </Link>
+        {/*Logo END*/}
+        {/*Search*/}
+        <div
+          className="header-search flex-1 flex justify-center"
+          onClick={() => {
+            pathname !== "/" && navigate("/");
+          }}
+        >
+          <Input
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+            size="large"
+            placeholder="Ürün ara..."
+            prefix={<SearchOutlined />}
+            className="rounded-full max-w-[800px]"
+          />
         </div>
-        {/*logo END*/}
+        {/*Search END*/}
         {/*Menu*/}
         <div
           className="menu-as flex justify-between items-center gap-7 md:static fixed z-50 bottom-0
@@ -54,22 +66,45 @@ const Header = ({ setSearch }) => {
             className={`menu-link ${pathname === "/" && "active"}`}
           >
             <HomeOutlined className="px-3 py-1 md:text-2xl text-xla" />
-            <span className="md:text-xs text-[10px] ">Ana Sayfa</span>
+            <span className="md:text-xs text-[10px]">Ana Sayfa</span>
+          </Link>
+          {/*Sepet*/}
+          <Badge
+            count={cart.cartItems.length}
+            offset={[0, 0]}
+            className="md:flex hidden"
+          >
+            <Link
+              to={"/cart"}
+              className={`menu-link ${pathname === "/cart" && "active"}`}
+            >
+              <ShoppingCartOutlined className="py-1 md:text-2xl text-xl" />
+              <span className="md:text-xs text-[10px]">Sepet</span>
+            </Link>
+          </Badge>
+          {/*Faturalar*/}
+          <Link
+            to={"/bill"}
+            className={`menu-link ${pathname === "/bill" && "active"}`}
+          >
+            <CopyOutlined className="px-3 py-1 md:text-2xl text-xl" />
+            <span className="md:text-xs text-[10px]">Faturalar</span>
           </Link>
           {/*Müşteriler*/}
           <Link
-            to={"/products"}
-            className={`menu-link ${pathname === "/products" && "active"}`}
+            to={"/customers"}
+            className={`menu-link ${pathname === "/customers" && "active"}`}
           >
             <UserOutlined className="px-3 py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Hastalarım</span>
+            <span className="md:text-xs text-[10px]">Müşteriler</span>
           </Link>
+          {/*İstatistikler*/}
           <Link
-            to={"/cart"}
-            className={`menu-link ${pathname === "/cart" && "active"}`}
+            to={"/statistics"}
+            className={`menu-link ${pathname === "/statistics" && "active"}`}
           >
-          <ProfileOutlined className="px-3 py-1 md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Porfilim</span>
+            <BarChartOutlined className="px-4 py-1 md:text-2xl text-xl" />
+            <span className="md:text-xs text-[10px]">İstatistikler</span>
           </Link>
           {/*Çıkış*/}
           <div onClick={logOut}>

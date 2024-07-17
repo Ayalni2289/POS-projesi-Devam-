@@ -1,12 +1,14 @@
-import { Button, Input, Space, Spin, Table } from "antd";
-import Header from "../components/header/Header.jsx";
-import { useEffect, useRef, useState } from "react";
+import { Table, Button, Spin } from "antd";
+import React, { useEffect, useState,useRef } from "react";
+import Header from "../components/header/Header";
+import PrintBill from "../components/bills/PrintBill";
 import { SearchOutlined } from "@ant-design/icons";
+import { Input, Space } from "antd";
 
-
-const CustomerPage = () => {
-
+const BillPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [billItems, setBillItems] = useState();
+  const [customer, setCustomer] = useState();
   const [/*searchText*/, setSearchText] = useState('');
   const [/*searchedColumn*/, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -111,6 +113,7 @@ const CustomerPage = () => {
     },
   });
 
+
   useEffect(() => {
     const getBills = async () => {
       try {
@@ -129,40 +132,76 @@ const CustomerPage = () => {
       title: "Müşteri Adı",
       dataIndex: "customerName",
       key: "customerName",
-      ...getColumnSearchProps('customerName')
+      ...getColumnSearchProps('customerName'),
     },
     {
       title: "Telefon Numarası",
       dataIndex: "customerPhone",
       key: "customerPhone",
-      ...getColumnSearchProps('customerPhone')
+      ...getColumnSearchProps('customerPhone'),
     },
     {
-      title: "İşlem Tarihi",
+      title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => {
         return <span>{text.substring(0, 10)}</span>;
       },
     },
+    {
+      title: "Ödeme Yöntemi",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
+      ...getColumnSearchProps('paymentMethod'),
+    },
+    {
+      title: "Toplam Tutar",
+      dataIndex: "totalAmount",
+      key: "totalAmount",
+      render: (text) => {
+        return <span>{text}₺</span>;
+      },
+      sorter: (a,b) => a.totalAmount - b.totalAmount,
+    },
+    {
+      title: "Açıklama",
+      dataIndex: "action",
+      key: "action",
+      render: (_,record) => {
+        return (
+          <Button
+            type="link"
+            className="pl-0"
+            onClick={() => {
+              setIsModalOpen(true);
+              setCustomer(record);
+            }}
+          >
+            Yazdır
+          </Button>
+        );
+      },
+    },
   ];
-
   return (
     <>
       <Header />
-      <h1 className="text-4xl font-bold text-center mb-4">Müşterilerim</h1>
-     {billItems ? ( <div className="px-6">        
+      <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      {billItems ? (
+        <div>    
         <Table
           dataSource={billItems}
           columns={columns}
           bordered
           pagination={false}
-          scroll={{ x: 1000, y: 300 }}
+          scroll={{ x: 1200, y: 450 }}
           rowKey={(record) => record._id}
         />
-      </div>):<Spin size="large" className="absolute w-screen justify-center h-screen flex top-1/2" /> }
+      </div>
+      ): <Spin size="large" className="absolute w-screen justify-center h-screen flex top-1/2" />}
+      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
     </>
   );
 };
 
-export default CustomerPage;
+export default BillPage;
