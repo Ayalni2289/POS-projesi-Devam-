@@ -54,7 +54,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         <Form.Item
           label="Telefon Numarası"
           name={"customerPhone"}
-          rules={[{ required: true, message: "Telefon Numarası Zorunludur !" }]}
+          rules={[{ required: true, whitespace:false, type:"number", len:10, message: "Telefon Numarası Zorunludur !" }]}
           tooltip="Bu alan zorunludur."
         >
           <Input placeholder="Telefon Numarası..." maxLength={10} />
