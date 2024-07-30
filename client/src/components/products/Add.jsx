@@ -60,7 +60,7 @@ const Add = ({
       <Form.Item name="price"
       label="Ürün Fiyatı"
       rules={[
-        { required: true, message: "Ürün Fiyatı Alanı Boş Bırakılamaz !" },
+        { required: true, type:"number", message: "Ürün Fiyatı Alanı Boş Bırakılamaz !" },
       ]}
         >
           <Input placeholder="Ürün fiyatı giriniz." type="number" min={1}/>
