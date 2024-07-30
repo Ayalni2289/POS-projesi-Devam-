@@ -45,7 +45,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         <Form.Item
           label="Müşteri Adı"
           name={"customerName"}
-          rules={[{ required: true, type:"string", message: "Müşteri Adı Zorunludur !" }]}
+          rules={[{ required: true, type:"string", pattern: new RegExp(/^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:"\\/?>.<,-]+$/i), message: "Müşteri Adı Zorunludur !" }]}
           tooltip="Bu alan zorunludur."
         >
           <Input placeholder="Müşteri Adı..." />
