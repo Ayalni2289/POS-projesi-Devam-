@@ -53,6 +53,7 @@ const Register = () => {
               name={"email"}
               rules={[
                 {
+                  type: "email",
                   required: true,
                   message: "Lütfen E-mail giriniz!",
                 },
