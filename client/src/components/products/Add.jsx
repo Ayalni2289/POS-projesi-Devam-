@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Select, message } from "antd";
+import { Button, Form, Input, InputNumber, Modal, Select, message } from "antd";
 import React from "react";
 
 const Add = ({
@@ -60,10 +60,14 @@ const Add = ({
       <Form.Item name="price"
       label="Ürün Fiyatı"
       rules={[
-        { required: true, type:"number", message: "Ürün Fiyatı Alanı Boş Bırakılamaz !" },
+        { required: true, message: "Ürün Fiyatı Alanı Boş Bırakılamaz !" },
       ]}
         >
-          <Input placeholder="Ürün fiyatı giriniz." type="number" min={1}/>
+          <InputNumber
+          style={{
+            width: '100%',
+          }}
+        />
         </Form.Item>
       <Form.Item name="category"
       label="Kategori Seç"
