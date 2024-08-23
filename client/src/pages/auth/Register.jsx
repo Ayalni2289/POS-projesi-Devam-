@@ -42,10 +42,11 @@ const Register = () => {
           }} src="/images/foodLogo.png" alt="logo" />
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
-              label="Kullanıcı Adı"
+              label="Ad Soyad"
               name={"username"}
               rules={[
                 {
+                  space: true,
                   required: true,
                   message: "Lütfen kullanıcı adınızı giriniz!",
                 },
