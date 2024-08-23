@@ -1,4 +1,4 @@
-import { Modal, Button, Form, Input, Select, Card, message } from "antd";
+import { Modal, Button, Form, Input, Select, Card, message, InputNumber } from "antd";
 import { useSelector,useDispatch } from "react-redux";
 import { reset } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,6 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
     }
 
   };
-  
   return (
     <Modal
       title="Fatura Oluştur"
@@ -45,20 +44,29 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         <Form.Item
           label="Müşteri Adı"
           name={"customerName"}
-          rules={[{ required: true, type:"string", pattern: new RegExp(/^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:"\\/?>.<,-]+$/i), message: "Müşteri Adı Zorunludur !" }]}
+          rules={[{ required: true, type:"string", pattern: new RegExp(/^[a-zA-Z_ ığüşöçİĞÜŞÖÇ]*$/i), message: "Müşteri Adı Zorunludur !" }]}
           tooltip="Müşteri Adı sayılardan oluşamaz."
         >
           <Input placeholder="Müşteri Adı..." />
         </Form.Item>
         {/*Telefon Numarası */}
         <Form.Item
-          label="Telefon Numarası"
-          name={"customerPhone"}
-          rules={[{ required: true, whitespace:false, type:"InputNumber", len:10, message: "Telefon Numarası Zorunludur !" }]}
-          tooltip="Telefon numarası 10 hane içermelidir."
-        >
-          <Input placeholder="Telefon Numarası..." maxLength={10} />
-        </Form.Item>
+        label="Telefon Numarası"
+        name={"customerPhone"}
+        rules={[
+          {
+            required: true,
+            message: 'Please input your phone number!',
+          },
+        ]}
+      >
+        <InputNumber
+          maxLength={10}
+          style={{
+            width: '100%',
+          }}
+        />
+      </Form.Item>
         {/*Ödeme Yöntemi */}
         <Form.Item
           label="Ödeme Yöntemi"
