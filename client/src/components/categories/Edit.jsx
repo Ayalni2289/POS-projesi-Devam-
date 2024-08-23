@@ -50,7 +50,7 @@ const Edit = ({
   };
   const columns = [
     {
-      title: "Category Title",
+      title: "Kategori Başlığı",
       dataIndex: "title",
       render: (_, record) => {
         if (record._id === editingRow._id) {
@@ -65,7 +65,7 @@ const Edit = ({
       },
     },
     {
-      title: "Action",
+      title: "İşlemler",
       dataIndex: "action",
       render: (_, record) => {
         return (
