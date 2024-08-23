@@ -46,7 +46,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           label="Müşteri Adı"
           name={"customerName"}
           rules={[{ required: true, type:"string", pattern: new RegExp(/^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:"\\/?>.<,-]+$/i), message: "Müşteri Adı Zorunludur !" }]}
-          tooltip="Bu alan zorunludur."
+          tooltip="Müşteri Adı sayılardan oluşamaz."
         >
           <Input placeholder="Müşteri Adı..." />
         </Form.Item>
@@ -54,8 +54,8 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
         <Form.Item
           label="Telefon Numarası"
           name={"customerPhone"}
-          rules={[{ required: true, whitespace:false, type:"number", len:10, message: "Telefon Numarası Zorunludur !" }]}
-          tooltip="Bu alan zorunludur."
+          rules={[{ required: true, whitespace:false, type:"InputNumber", len:10, message: "Telefon Numarası Zorunludur !" }]}
+          tooltip="Telefon numarası 10 hane içermelidir."
         >
           <Input placeholder="Telefon Numarası..." maxLength={10} />
         </Form.Item>
