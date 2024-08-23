@@ -147,6 +147,7 @@ const BillPage = () => {
       render: (text) => {
         return <span>{text.substring(0, 10)}</span>;
       },
+      sorter: (a,b) => new Date(a.createdAt) - new Date(b.createdAt),
     },
     {
       title: "Ödeme Yöntemi",
@@ -190,7 +191,7 @@ const BillPage = () => {
       {billItems ? (
         <div>    
         <Table
-          dataSource={billItems}
+          dataSource={billItems.reverse()}
           columns={columns}
           bordered
           pagination={false}
