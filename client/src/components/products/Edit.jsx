@@ -5,10 +5,8 @@ const Edit = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [editingItem, seteditingItem] = useState({})
+    const [editingItem, setEditingItem] = useState({})
     const [form] = Form.useForm();
-
-    console.log(editingItem);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -46,9 +44,9 @@ const Edit = () => {
       }, []);
     
   //ONFINISH
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     try {
-      fetch(process.env.REACT_APP_SERVER_URL + "/api/products/update-product", {
+      await fetch(process.env.REACT_APP_SERVER_URL + "/api/products/update-product", {
         method: "PUT",
         body: JSON.stringify({ ...values, productId: editingItem._id }),
         headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -57,12 +55,12 @@ const Edit = () => {
       setProducts(
         products.map((item) => {
           if(item._id === editingItem._id){
-            return {...values};
+            return {...item, ...values}; // Güncellenen ürünü geri döndür
           }
           return item;
         })
       );
-    //   setIsEditModalOpen(false);
+      setIsEditModalOpen(false);
     } catch (error) {
       message.error("Bir şeyler ters gitti");
       console.log(error);
@@ -70,10 +68,10 @@ const Edit = () => {
   };
 
   //DELETE
-  const deleteCategories = (id) => {
+  const deleteCategories = async (id) => {
     if(window.confirm("Emin Misiniz ?")){
         try {
-            fetch(process.env.REACT_APP_SERVER_URL + "/api/products/delete-product", {
+            await fetch(process.env.REACT_APP_SERVER_URL + "/api/products/delete-product", {
               method: "DELETE",
               body: JSON.stringify({ productId: id }),
               headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -86,6 +84,7 @@ const Edit = () => {
           }
     }
   };
+
   const columns = [
     {
       title: "Ürün Adı",
@@ -114,7 +113,7 @@ const Edit = () => {
         width: "8%",
     },
     {
-      title: "Action",
+      title: "İşlem",
       dataIndex: "action",
       width: "8%",
       render: (_, record) => {
@@ -125,7 +124,8 @@ const Edit = () => {
               className="pl-0"
               onClick={() => {
                 setIsEditModalOpen(true);
-                seteditingItem(record);
+                setEditingItem(record);
+                form.setFieldsValue(record); // Form değerlerini ayarla
               }}
             >
               Düzenle
@@ -153,7 +153,7 @@ const Edit = () => {
           scroll={{x: 1000, y: 500}}
         />
          <Modal
-      title="Yeni Ürün Ekle"
+      title="Ürünü Düzenle"
       open={isEditModalOpen}
       onCancel={() => setIsEditModalOpen(false)}
       footer={false}
@@ -174,7 +174,7 @@ const Edit = () => {
           { required: true, message: "Ürün Resmi Alanı Boş Bırakılamaz !" },
         ]}
           >
-            <Input placeholder="Ürün fiyatı giriniz."/>
+            <Input placeholder="Ürün resmi giriniz."/>
           </Form.Item>
       <Form.Item name="price"
       label="Ürün Fiyatı"
@@ -195,12 +195,12 @@ const Edit = () => {
           placeholder="Search to Select"
           optionFilterProp="children"
           filterOption={(input, option) =>
-            (option?.title ?? "").includes(input)
+            (option?.children ?? "").includes(input)
           }
           filterSort={(optionA, optionB) =>
-          (optionA?.title ?? "")
+          (optionA?.children ?? "")
         .toLowerCase()
-        .localeCompare((optionB?.title ?? "").toLowerCase())
+        .localeCompare((optionB?.children ?? "").toLowerCase())
       }
         options={categories}
         />
