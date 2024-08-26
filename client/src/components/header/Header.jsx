@@ -31,9 +31,9 @@ const Header = ({ setSearch }) => {
         <div className="logo"></div>
         <a href="/">
           <img src="/images/foodLogo.png" alt="logo" style={{
-                width: "150px",
-                height: "100px",
-                objectFit: "contain",
+            width: "150px",
+            height: "100px",
+            objectFit: "contain",
           }}/>
         </a>
         {/*Logo END*/}

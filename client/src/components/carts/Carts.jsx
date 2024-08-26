@@ -85,7 +85,7 @@ const Carts = () => {
           : "Sepette Hiç Ürün Bulunamadı."}
       </ul>
       <div className="cart-totals mt-auto"></div>
-      <div className="border-t border-b mt-4">
+      <div className="border-t border-b mb-10">
         {/*Ara Toplam */}
         <div className="flex justify-between p-2">
           <b>Ara Toplam</b>
