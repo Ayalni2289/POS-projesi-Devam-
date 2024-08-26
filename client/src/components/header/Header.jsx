@@ -69,7 +69,8 @@ const Header = ({ setSearch }) => {
           </Link>
           {/*Sepet*/}
           <Badge
-            count={cart.cartItems.length}
+            count={cart.cartItems.reduce((total,item) => total+ item.quantity, 0)
+            }
             offset={[0, 0]}
             className="md:flex hidden"
           >
