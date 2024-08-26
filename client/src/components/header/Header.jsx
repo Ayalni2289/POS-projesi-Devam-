@@ -26,17 +26,16 @@ const Header = ({ setSearch }) => {
 
   return (
     <div className="border-b mb-6">
-      <header className="py-4 px-6 flex justify-between items-center gap-10 ">
+      <header className="py-4 px-3 flex justify-between items-center gap-10 ">
         {/*Logo*/}
         <div className="logo"></div>
-        <Link to="/">
-          <h2
-            className="text-2xl font-bold 
-                        md:text-4xl"
-          >
-            LOGO
-          </h2>
-        </Link>
+        <a href="/">
+          <img src="/images/foodLogo.png" alt="logo" style={{
+                width: "150px",
+                height: "100px",
+                objectFit: "contain",
+          }}/>
+        </a>
         {/*Logo END*/}
         {/*Search*/}
         <div
